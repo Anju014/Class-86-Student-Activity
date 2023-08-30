@@ -32,15 +32,7 @@ export default class Profile extends React.Component {
     };
   }
 
-  toggleSwitch() {
-    const previous_state = this.state.isEnabled;
-    const theme = !this.state.isEnabled ? 'dark' : 'light';
-    var updates = {};
-    updates['/users/' + firebase.auth().currentUser.uid + '/current_theme'] =
-      theme;
-    firebase.database().ref().update(updates);
-    this.setState({ isEnabled: !previous_state, light_theme: previous_state });
-  }
+
 
   async _loadFontsAsync() {
     await Font.loadAsync(customFonts);
@@ -100,16 +92,7 @@ export default class Profile extends React.Component {
             <View style={styles.themeContainer}>
               <Text style={styles.themeText}>Dark Theme</Text>
 
-              <Switch
-                style={{
-                  transform: [{ scaleX: 1.3 }, { scaleY: 1.3 }],
-                }}
-                trackColor={{ false: '#767577', true: 'white' }}
-                thumbColor={this.state.isEnabled ? '#ee8249' : '#f4f3f4'}
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={() => this.toggleSwitch()}
-                value={this.state.isEnabled}
-              />
+        
               
             </View>
 
